@@ -1,0 +1,118 @@
+/*Taxonomies Style*/
+th.column-thumb {width:60px;}
+.form-field img.taxonomy-image {border:1px solid #eee;max-width:300px;max-height:300px;}
+.inline-edit-row fieldset .thumb label span.title {width:48px;height:48px;border:1px solid #eee;display:inline-block;}
+.column-thumb span {width:48px;height:48px;border:1px solid #eee;display:inline-block;}
+.inline-edit-row fieldset .thumb img,.column-thumb img {width:48px;height:48px;}
+
+#acf-song_video,
+#acf-song_video_cover,
+#acf-song_audio,
+#acf-song_audio_cover,
+#acf-song_for_sale,
+#acf-song_video.tzhide,
+#acf-song_video_cover.tzhide,
+#acf-song_audio.tzhide,
+#acf-song_audio_cover.tzhide,
+#acf-song_for_sale.tzhide
+{
+display:none;
+}
+#acf-song_video.tzshow,
+#acf-song_audio.tzshow,
+#acf-song_audio_cover.tzshow,
+#acf-song_video_cover.tzshow,
+#acf-song_for_sale.tzshow
+{
+    display:block;
+}
+.acf-tab-wrap label small{
+    font-weight:normal;
+}
+.acf-tab_group-hide{
+    display:none !important;
+}
+.addons-header{
+    background:#fff;
+    padding:20px 15px;
+    margin-right:15px;
+}
+.addons-item{
+    float:left;
+    background:#fff;
+    width:300px;
+    -webkit-box-shadow: 0 0 3px 1px #ddd;
+    box-shadow: 0 0 3px 1px #ddd;
+    padding:15px;
+    margin-right:15px;
+    margin-bottom: 8px;
+}
+.addons-item img{
+    float:left;
+    width:120px;
+    margin-right:15px;
+}
+.addons-item span{
+    font-weight:bold;
+
+}
+.btn_addons{
+    clear:both;
+    padding-top:15px;
+}
+.tz_album_create .tzacf-checkbox-list{
+    width:45%;
+    padding:0;
+    float:left;
+}
+.tz_album_create label.album{
+    padding:5px 15px;
+    font-weight:bold;
+}
+.tz_album_create .acf-checkbox-list li{
+    padding:5px 15px;
+}
+.addons-contain span.version{
+    color:#999;
+    font-size:11px;
+    display:block;
+    font-weight: normal;
+}
+.addons-header h4{
+    margin-top: 0;
+    font-size:15px;
+}
+.btn_addons .installed{
+    border:none;
+    background:#00A058;
+    padding:3px 10px;
+    color:#fff;
+    border-radius:3px;
+}
+.addon-submit{
+    color:#fff;
+    border:1px solid #efefef;
+    background:#449DF9;
+    cursor:pointer;
+    padding: 3px 10px;
+    border-radius:3px;
+}
+/* custom editor*/
+
+#albums-select{
+    padding:15px;
+}
+#albums-select label{
+    width:100px;
+    display:inline-block;
+}
+#albums-select select{
+    width:200px;
+}
+#albums-select .album-item{
+    display:block;
+    margin-bottom:15px;
+}
+#albums-select .album-item label{
+    font-weight:bold;
+}

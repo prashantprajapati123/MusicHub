@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Beatport Discography Shortcode</title>
+	<link rel="stylesheet" href="css/beatport-discography-shortcode-admin.css">
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+	<form id="beatport-discography-shortcode" class="form-stacked" action="#">
+		<fieldset class="step-1">
+			<legend>Step 1 - Select type of feed.</legend>
+			<ul class="inputs-list">
+				<li>
+					<label>
+						<span class="span2">Artist</span>
+						<input type="radio" name="feed" id="artistfeed" value="artist"/>
+						<span class="help-inline">(Get list of tracks/releases by Artist Name)</span>
+					</label>
+				</li>
+				<li>
+					<label>
+						<span class="span2">Record Label</span>
+						<input type="radio" name="feed" id="labelfeed" value="label"/>
+						<span class="help-inline">(Get list of tracks/releases by Record Label Name)</span>
+					</label>
+				</li>
+				<li>
+					<label>
+						<span class="span2">Release (Detailed)</span>
+						<input type="radio" name="feed" id="idfeed" value="id"/>
+						<span class="help-inline">(Get a detailed view of a release by Release Id)</span>
+					</label>
+				</li>
+			</ul>	
+		</fieldset>
+		<fieldset class="step-2">
+			<legend>Step 2</legend>
+			<p>The minimum required fields are: Artist Name or Record Label Name</p>
+			<div class="clearfix">
+				<ul class="inputs-list">
+					<li class="artistfeed">
+						<label>
+							<span class="span2">Artist Name<span class="required">*</span></span>
+							<input type="text" name="artist" class="span4 artistfeed"/>
+							<span class="help-inline">Artist name exactly as it appears on Beatport.</span>
+						</label>
+					</li>
+					<li class="labelfeed">
+						<label>
+							<span class="span2">Label Name<span class="required">*</span></span>
+							<input type="text" name="label" class="span4 labelfeed"/>
+							<span class="help-inline">Label Name exactly as it appears on Beatport.</span>
+						</label>
+					</li>
+					<li class="idfeed">
+						<label>
+							<span class="span2">Release Id<span class="required">*</span></span>
+							<input type="text" name="id" class="span4 idfeed"/>
+							<span class="help-inline">Release Id exactly as it appears on Beatport.</span>
+						</label>
+					</li>
+
+				</ul>
+			</div>
+		</fieldset>
+
+		<fieldset class="step-3">
+			<legend>Step 3 - Items you would like displayed</legend>
+			<ul class="inputs-list">
+				<li>
+					<label>
+						<span class="span2">Artist Bio</span>
+						<input type="radio" name="items" value="biography" class="biography"/>
+					</label>
+				</li>
+				<li class="releaseitems">
+					<label>
+						<span class="span2">Releases</span>
+						<input type="radio" name="items" value="release" class="releaseitems"/>
+					</label>
+				</li>
+				<li class="trackitems">
+					<label>
+						<span class="span2">Tracks</span>
+						<input type="radio" name="items" value="track" class="trackitems"/>
+					</label>
+				</li>
+				<li>
+					<label>
+						<span class="span2">Sound Player</span>
+						<input type="checkbox" name="soundPlayer" id="soundPlayer"/>
+						<span class="help-inline">Enable/Disable sound player.</span>
+					</label>
+				</li>
+				<li>
+					<label>
+						<span class="span2">Buy on Beatport.com link</span>
+						<input type="checkbox" name="buylink" id="buylink"/>
+						<span class="help-inline">Enable/Disable Buy on beatport.com link.</span>
+					</label>
+				</li>										
+
+			</ul>
+		</fieldset>
+		<fieldset class="step-4">
+			<legend>Step 4 - Additional Settings</legend>
+			<ul class="inputs-list">
+				<li>
+					<label>
+						<span class="span2">Limit to</span>
+						<input type="number" name="perpage" id="perpage" value="" min="1" max="150"> results
+					</label>
+				</li>
+			</ul>
+		</fieldset>
+		<div id="trycode">
+			<div id="preloader_container">
+				<img id="preloader" src="image/rectangular_preloader.gif" />
+			</div>
+			<div id="results"></div>
+		</div>
+		<div class="beatport-discography-shortcode-actions">
+            <button type="button" id="btnTry" class="btn primary">Try shortcode</button>
+            <input type="submit" id="btnInsertShortCode" value="Insert shortcode" class="btn primary"/>
+            or
+            <input class="btn" type="reset" value="Reset settings"/>
+        </div>
+	</form>
+</body>
+<script type="text/javascript" src="../../../wp-includes/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="bootstrap-typeahead.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+	!function(){
+		var data = window.top.beatportDiscographyShortcodeDialogData
+		  ,	loadJS = function (path){
+				document.write('<script type="text/javascript" src="'+ path +'"><\/script>');
+			}
+		  ,	loadCSS = function (path) {
+				document.write('<link rel="stylesheet" type="text/css" href="'+ path +'" \/>');
+			};
+
+		// Load CSS and JS
+		loadCSS(data.pluginsUrl + '/beatport-discography-shortcode/css/bootstrap-1.4.0.min.css?v=' + data.pluginVersion);
+		loadJS(data.includesUrl + 'js/tinymce/tiny_mce_popup.js?v=' + data.pluginVersion);
+	}();
+// ]]> 
+</script>
+<script type="text/javascript">
+// <![CDATA[
+
+	function toTitleCase(str){
+
+		str = str.split(/(\W)/gi).map(function(txt){ return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); }).join('');
+	    return str;
+	}
+	jQuery(document).ready(function(){
+		jQuery('.labelfeed, #soundPlayer, #btnTry, #btnInsertShortCode').prop('disabled', true);
+		jQuery('.step-2, .step-3, .step-4, .beatport-discography-shortcode-actions').hide();
+
+		jQuery('#btnTry').addClass('disabled');
+		jQuery('#btnInsertShortCode').addClass('disabled');
+
+		jQuery('#artistfeed').on('click', function(e){
+			jQuery('.labelfeed, .idfeed').val('').prop('disabled', true);
+			jQuery('.step-2').show();
+			
+			jQuery('#artistfeed').attr('checked','checked');
+			jQuery('.artistfeed').prop('disabled', false);
+			jQuery('.artistfeed, .step-2').show();
+			jQuery('.labelfeed, .idfeed, .step-3, .beatport-discography-shortcode-actions').hide();
+			jQuery('#soundPlayer, #buylink, input[name=items]').removeAttr('checked');
+		});
+
+		jQuery('#labelfeed').on('click', function(e){
+			jQuery('#labelfeed').attr('checked','checked');
+			jQuery('.artistfeed, .idfeed').val('').prop('disabled', true);
+			jQuery('.labelfeed').prop('disabled', false);
+			jQuery('.labelfeed, .step-2').show();
+			jQuery('.artistfeed, .idfeed, .step-3, .beatport-discography-shortcode-actions').hide();
+			jQuery('#soundPlayer, #buylink, input[name=items]').removeAttr('checked');	
+		});
+
+		jQuery('#idfeed').on('click', function(e){
+			jQuery('#idfeed').attr('checked','checked');
+			jQuery('.artistfeed, .labelfeed').val('').prop('disabled', true);	
+			jQuery('.idfeed').prop('disabled', false);
+			jQuery('.idfeed, .step-2').show();
+			jQuery('.artistfeed, .labelfeed, .step-3, .beatport-discography-shortcode-actions').hide();		
+			jQuery('#soundPlayer, #buylink, input[name=items]').removeAttr('checked');
+			jQuery('.beatport-discography-shortcode-actions').hide();
+		});
+
+		jQuery('.artistfeed').on('blur', function(){
+			if(jQuery(this).val() != ''){
+				jQuery(this).val(toTitleCase(jQuery(this).val().split(' ').join('+')));
+				jQuery('.beatport-discography-shortcode-actions, .step-3, .step-4').show();
+			}else{
+				jQuery('.step-3').hide();
+			}
+		});
+
+		jQuery('.labelfeed').on('blur', function(){
+			if(jQuery(this).val() != ''){
+				jQuery(this).val(toTitleCase(jQuery(this).val().split(' ').join('+')));
+				jQuery('.beatport-discography-shortcode-actions, .step-3, .step-4').show();
+			}else{
+				jQuery('.step-3').hide();
+			}
+		});
+
+		jQuery('.idfeed').on('blur', function(){
+			if(jQuery(this).val() != ''){
+				jQuery('.step-3, .beatport-discography-shortcode-actions, .step-4').show();	
+				jQuery('input.trackitems').removeAttr('checked');
+				jQuery('.trackitems').hide();				
+			}else{
+				jQuery('.step-3').hide();
+			}
+		});
+
+		jQuery('input[name=items]').click(function(){
+			jQuery('#btnTry, #btnInsertShortCode').removeClass('disabled').prop('disabled', false).removeAttr('disabled');
+			if(jQuery(this).val() == 'release'){
+				jQuery('#soundPlayer').removeAttr('checked').prop('disabled', true);
+			}else{
+				jQuery('#soundPlayer').prop('disabled', false);
+			}
+
+		});
+
+		jQuery('#btnTry').click(function(){
+
+			var url = 'http://www.federicogiust.com/beatportapi/beatport_api.php',
+				feed = jQuery('input[name=feed]:checked', '#beatport-discography-shortcode').val();
+
+			if( feed == 'artist' ){
+
+				var artist = jQuery('input[name=artist]').val(),
+				 items = jQuery('input[name=items]:checked').val();
+
+				if(artist != ''){
+
+					jQuery('#preloader_container, #trycode').show();
+					jQuery('#results').empty();
+
+					if( items == 'release' ){
+						url = url + '?facets=artistName:' + artist + '&sortBy=publishDate%20desc&perPage=150&url=releases';
+					}else if( items == 'track' ){
+						url = url + '?facets=artistName:' + artist + '&sortBy=publishDate%20desc&perPage=150&url=tracks';
+					}				
+				}
+
+			}else if( feed == 'label' ){
+
+				var label = jQuery('input[name=label]').val(),
+				 items = jQuery('input[name=items]').val();
+
+				if(label != ''){
+
+					jQuery('#preloader_container, #trycode').show();
+					jQuery('#results').empty();
+
+					if( items == 'release' ){
+						url = url + '?facets=labelName:' + label + '&sortBy=publishDate%20desc&perPage=150&url=releases';
+					}else if( items == 'track' ){
+						url = url + '?facets=labelName:' + label + '&sortBy=publishDate%20desc&perPage=150&url=tracks';
+					}
+
+				
+				}
+
+			}else if( feed = 'id' ){
+				
+				var id = jQuery('input[name=id]').val(),
+				 items = jQuery('input[name=items]').val();
+				if(id != ''){
+
+					jQuery('#preloader_container, #trycode').show();
+					jQuery('#results').empty();
+
+					if( items == 'release' ){
+						url = url + '?id=' + id + '&sortBy=publishDate%20desc&perPage=150&url=releases';
+					}else if( items == 'track' ){
+						url = url + '?id=' + id + '&sortBy=publishDate%20desc&perPage=150&url=tracks';
+					}
+				}
+			}
+
+			if(jQuery('#perpage').val() != ''){
+				url = url.replace('perPage=150', 'perPage=' + jQuery('#perpage').val());
+			}
+			console.log('url ' + url);
+
+			jQuery.ajax({
+			  	type: 'GET',
+		      	crossDomain: true,
+		      	cache: false,
+	  			url:  url,
+	  			dataType: 'json'
+
+
+			}).done(function(data, textStatus, jqXHR){
+
+		  		var jsonData = jqXHR.responseText;
+
+		  		var jsonDataString = JSON.stringify(jsonData);
+
+				jQuery('#preloader_container').hide();
+				jQuery('#results').html('<pre>' + jsonDataString + '</pre>');
+			}).fail(function(jqXHR, textStatus, errorThrown){
+
+				jQuery('#preloader_container').hide();
+				jQuery('#results').html('<pre>' + textStatus + '</pre>');
+			});	
+
+
+		});
+
+	});
+
+	tinyMCEPopup.onInit.add(function(ed) {
+			var form = window.document.forms[0],
+
+			isEmpty = function(value) {
+				return (/^\s*$/.test(value));
+			},
+
+			encodeStr = function(value) {
+				return value.replace(/\s/g, "%20")
+							.replace(/"/g, "%22")
+							.replace(/'/g, "%27")
+							.replace(/=/g, "%3D")
+							.replace(/\[/g, "%5B")
+							.replace(/\]/g, "%5D")
+							.replace(/\//g, "%2F");
+			},
+
+			toTitleCase = function (str)
+			{
+				str = str.split(/(\W)/gi).map(function(txt){ return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); }).join('');
+				//console.log(str);
+			    return str;
+			},
+
+			insertShortcode = function(e){
+				var sc = "[beatport_discography_sc ",
+					inputs = form.elements, input, inputName, inputValue,
+					l = inputs.length, i = 0;
+
+				feed = jQuery('input[name=feed]:checked').val();
+
+				if (feed == 'artist') {
+					value = jQuery('input[name=artist]').val();
+					if (isEmpty(value)) {
+						alert("You need to introduce an artist name.");
+						return false;
+					}
+				} else if (feed == 'label') {
+					value = jQuery('input[name=label]').val();
+					if (isEmpty(value)) {
+						alert("You need to introduce a label name.");
+						return false;
+					}
+				} else if (feed == 'id') {
+					value = jQuery('input[name=id]').val();
+					if (isEmpty(value)) {
+						alert("You need to introduce an id of the release or track.");
+						return false;
+					}
+				}
+
+				for ( ; i < l; i++) {
+					input = inputs[i];
+					inputName = input.name;
+					inputValue = input.value;
+
+					// inputs of type "checkbox", "radio" and "text"
+					if (input.checked || ((input.type == "text" || input.type == "number" ) && !isEmpty(inputValue) && inputValue != input.defaultValue)) {
+						if (inputName == "title") {
+							inputValue = encodeStr(inputValue);
+						}
+						sc += ' ' + inputName + '="' + inputValue + '"';
+					}
+				}
+
+				sc += "]";
+
+				ed.execCommand('mceInsertContent', 0, sc);
+				tinyMCEPopup.close();
+
+				return false;
+			};
+
+			form.onsubmit = insertShortcode;
+
+			tinyMCEPopup.resizeToInnerSize();
+		});
+
+// ]]> 
+</script>
+</html>    

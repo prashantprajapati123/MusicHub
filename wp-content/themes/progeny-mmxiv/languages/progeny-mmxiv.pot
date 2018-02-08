@@ -1,0 +1,76 @@
+# Copyright (C) 2017 AudioTheme
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Progeny MMXIV 1.3.0\n"
+"Report-Msgid-Bugs-To: https://audiotheme.com/support/\n"
+"POT-Creation-Date: 2017-04-05 15:22:03+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+
+#: includes/template-tags.php:65
+msgid "Pages:"
+msgstr ""
+
+#: includes/vendor/class-audiotheme-themenotice.php:38
+msgid ""
+"The AudioTheme plugin should be installed and activated for this theme to "
+"display properly."
+msgstr ""
+
+#: includes/vendor/class-audiotheme-themenotice.php:39
+msgid "Activate now"
+msgstr ""
+
+#: includes/vendor/class-audiotheme-themenotice.php:40
+msgid "Find out more"
+msgstr ""
+
+#: includes/vendor/class-audiotheme-themenotice.php:41
+msgid "Dismiss"
+msgstr ""
+
+#: templates/parts/content-contributor.php:32
+msgid "%d Article"
+msgid_plural "%d Articles"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/parts/content-contributor.php:38
+msgid "Twitter"
+msgstr ""
+
+#: templates/parts/content-contributor.php:44
+msgid "Facebook"
+msgstr ""
+
+#: templates/parts/content-contributor.php:50
+msgid "Website"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Twenty Fourteen child theme with customized AudioTheme integration. Start "
+"managing your * sites content, music, gigs, and videos all in one place."
+msgstr ""
+
+#: content-featured-post.php:29
+msgctxt "Used between list items, there is a space after the comma."
+msgid ", "
+msgstr ""

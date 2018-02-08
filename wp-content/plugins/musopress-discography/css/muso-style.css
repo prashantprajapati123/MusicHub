@@ -1,0 +1,35 @@
+table#muso-discog-grid,
+table#muso-discog-grid td,
+table#muso-discog-grid tr {
+	border:none;
+}
+
+table#muso-discog-grid td{
+    padding:5px;
+    width:140px;
+}
+
+table#muso-discog-grid td img {
+    margin:0;
+}
+
+table#muso-discog-grid .album-title {   
+	font-weight:bold;
+}
+
+table#muso-discog-grid p {
+    font-size:12px;
+}
+
+.album-cover,
+.music-player {
+	margin-bottom: 40px;
+}
+
+.muso-list-discog dd {
+	margin-bottom: 30px;
+}
+
+.muso-nav-links {
+	font-size:12px;
+}

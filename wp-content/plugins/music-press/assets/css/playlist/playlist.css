@@ -1,0 +1,142 @@
+.tz-music-content{
+    position:relative;
+    height:500px;
+}
+.item-music-image{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-size:cover;
+}
+.clr{
+    clear:both;
+}
+#playlist_container_audio{
+    width:100%;
+    background:#101010;
+    color:#fff;
+    padding:0;
+    border:none;
+}
+#playlist_container_audio .jp-title{
+    float:left;
+    width:35%;
+    padding:30px 0;
+}
+#playlist_container_audio .jp-interface{
+    float:right;
+    background:none;
+    width:60%;
+    padding:30px 0;
+    height:auto;
+}
+#playlist_container_audio .jp-playlist {
+    clear:both;
+
+}
+#playlist_container_audio .jp-interface .jp-controls{
+    padding:0;
+    float:left;
+    width:auto;
+    margin-right:20px;
+}
+#playlist_container_audio .jp-controls button{
+    text-indent: inherit;
+    background:none;
+    height:28px;
+    width:25px;
+    margin:0;
+    padding:0;
+    line-height: 28px;
+}
+#playlist_container_audio .jp-controls button:before,
+#playlist_container_audio .jp-volume-controls button:before{
+    font-family: FontAwesome;
+    font-size:10px;
+    display:block;
+}
+#playlist_container_audio .jp-controls button.jp-play:before{
+    content:"\f04b";
+}
+#playlist_container_audio.jp-state-playing .jp-controls button.jp-play:before{
+    content:"\f04c";
+}
+#playlist_container_audio .jp-volume-controls button.jp-mute:before{
+    content:"\f027";
+}
+#playlist_container_audio.jp-state-muted .jp-volume-controls button.jp-mute:before{
+    content:"\f026";
+}
+
+#playlist_container_audio .jp-controls button i{
+    font-size:10px;
+    line-height: 28px;
+    display:block;
+}
+#playlist_container_audio .jp-interface .jp-progress{
+    float:left;
+    width:50%;
+    left:auto;
+    position:relative;
+    top:auto;
+    height:3px;
+    background:#313333;
+    margin-top:14px;
+    margin-right:20px;
+}
+#playlist_container_audio .jp-interface .jp-progress .jp-play-bar{
+    background:#e1be9a;
+}
+#playlist_container_audio .jp-interface .jp-time-holder{
+    float:left;
+    position:relative;
+    top:auto;
+    left:auto;
+    width:auto;
+    font-size:11px;
+    margin-top:5px;
+}
+#playlist_container_audio .jp-interface .jp-time-holder .jp-current-time,
+#playlist_container_audio .jp-interface .jp-time-holder .jp-duration{
+    float:none;
+    display:inline;
+    width:auto;
+    font-size:11px;
+
+}
+#playlist_container_audio .jp-interface  .jp-volume-controls{
+    float:left;
+    position:relative;
+    left:auto;
+    top:auto;
+    width:auto;
+    margin-left: 5px;
+}
+#playlist_container_audio .jp-interface  .jp-volume-controls button{
+    background:none;
+    text-indent: inherit;
+    height:28px;
+    width:28px;
+    line-height: 28px;
+
+}
+#playlist_container_audio .jp-interface  .jp-volume-controls button i{
+    font-size:10px;
+    display:block;
+    line-height: 28px;
+}
+#playlist_container_audio .jp-interface  .jp-volume-controls .jp-volume-bar-value{
+    background:#e1be9a;
+    height:3px;
+}
+#playlist_container_audio .jp-interface  .jp-volume-controls .jp-volume-bar{
+    height:3px;
+    margin-top:7px;
+    width:65px;
+}
+.jp-type-playlist .icon{
+    float:left;
+    padding:30px 20px 30px;
+}

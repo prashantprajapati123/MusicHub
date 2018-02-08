@@ -1,0 +1,6 @@
+Artist Info
+*
+1.0
+*
+Add on to add more info for Artist as: Real name, Birthday, website...
+*

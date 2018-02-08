@@ -1,0 +1,111 @@
+#theme-options-wrap {
+	/*padding:20px;*/
+	width:800px;
+}
+
+#bandcamp-wrap {
+	width:600px;
+}
+
+#theme-options-wrap .form-table,
+#bandcamp-wrap .form-table {
+	background:#eee;
+	margin-bottom: 40px;
+}
+
+#theme-options-wrap #muso-contact-email {
+	width:300px;
+}
+
+#theme-options-wrap input[type="text"],
+#theme-options-wrap textarea,
+#bandcamp-wrap input[type="text"] {
+	padding:5px;
+}
+
+#theme-options-wrap .form-table th {
+	font-style:italic;
+}
+
+#theme-options-wrap .form-table td {
+	width:300px;
+}
+
+#theme-options-wrap .form-table tr,
+#bandcamp-wrap .form-table tr {
+	border-bottom:1px solid #ddd;
+}
+
+#bandcamp-wrap .form-table td.checkbox-column {
+	width:20px;
+}
+
+#bandcamp-wrap .form-table #check-all {
+	background: #ddd;
+	border-bottom: 1px solid #ccc;
+	font-weight:bold;
+}
+
+.tabs form {
+	padding-top:15px;
+	position:relative;
+	height:485px;
+}
+
+.tabs .form-table {
+	position:absolute;
+	top:37px;
+	left:0;
+}
+
+.tabs h3 {
+	border:1px solid #ddd;
+	padding:10px;
+	display: inline;
+	margin-right:5px;
+}
+
+.tabs h3 a {
+	text-decoration:none;
+}
+
+.tabs h3#heading-1 {
+	background:#eee;
+}
+
+.tabs h3#heading-2 {
+	/*left:150px;*/
+}
+
+.tabs h3#heading-3 {
+	/*left:290px;*/
+}
+
+.tabs h3#heading-4 {
+	/*left:450px;*/
+}
+
+.tabs h3#heading-5 {
+	/*left:600px;*/
+}
+
+.tabs #form-1,
+.tabs #form-2,
+.tabs #form-3,
+.tabs #form-4,
+.tabs #form-5 {
+	display:none;
+}
+
+.tabs .button-primary {
+	position:absolute;
+	bottom:20px;
+	left:0;
+
+	
+}
+
+
+.tabs p {
+	margin-bottom: 40px;
+}
